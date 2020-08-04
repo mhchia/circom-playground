@@ -1,5 +1,3 @@
-CIRCUIT = circuit.circom
-
 all: after_ptau
 
 complete: ptau after_ptau
