@@ -1,3 +1,5 @@
+CIRCUIT = circuit.circom
+
 all: compile witness proof verify
 
 compile: circuit.circom
@@ -34,4 +36,16 @@ verify: verification_key.json public.json proof.json
 	snarkjs groth16 verify verification_key.json public.json proof.json
 
 .PHONY: clean
+
+clean_ptau:
+	rm -f challenge_* response_*
+
+clean_compiled:
+	rm -f circuit.sym circuit.wasm circuit.r1cs circuit.r1cs.json *.zkey verification_key.json
+
+clean_proofs:
+	rm -f witness.wtns proof.json public.json verifier.sol
+
+clean: clean_ptau clean_compiled clean_proofs
+
 
